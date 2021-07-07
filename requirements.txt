@@ -5,7 +5,7 @@ matplotlib==3.4.2
 keras_nightly==2.5.0.dev2021032900
 numpy==1.19.5
 tensorflow==2.5.0
-opencv_python==4.5.2.54
+opencv_python-headless
 imageio==2.9.0
 keras==2.4.3
 lifelines==0.26.0
