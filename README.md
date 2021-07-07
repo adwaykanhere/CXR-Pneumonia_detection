@@ -7,6 +7,6 @@ Detecting abnormalities in Chest X-Ray using transfer learning.
 
 The data used belongs to the NIH ChestXray dataset, and can be found [here](https://nihcc.app.box.com/v/ChestXray-NIHCC)
 
-### Check out the online application by clicking on the streamlit badge
+### **Check out the online application by clicking on the streamlit badge**
 
-### The code for reproducing this project is now hosted on Google Colab. Click the badge to check it out!
+The code for reproducing this project is now hosted on Google Colab. Click the badge to check it out!
