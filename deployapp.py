@@ -4,13 +4,23 @@ import pandas as pd
 from PIL import Image
 from make_inf import model_inference, grad_cam
 import os
+import gc
 import time
 import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
 
+gc.enable()
+
+st.sidebar.title("Deep learning based medical image diagnosis")
 
 st.title("Welcome to Chest X-Ray Abnormalities Classification using Machine learning")
-st.sidebar.header("Classify between the following types of abnormalities:")
+st.sidebar.subheader("Classify between the following types of abnormalities:")
+
+st.write("This application can be used to predict the occurence of one or more medical abnormalities from radiographic chest X-ray images as listed for the conditions described on the left.")
+
+st.write("The machine learning model being used here is based on a pretrained model developed on [this Chest X-Ray dataset](https://nihcc.app.box.com/v/ChestXray-NIHCC); the model is pretrained and is based from [here](https://www.coursera.org/learn/ai-for-medical-diagnosis?)")
+
+st.write("**For a step-by-step approach to training and testing this framework, check out this** [Google Colab notebook](https://colab.research.google.com/drive/1o1tYdm80PqJNyT3F9aiueqb0bc0SU9ek?usp=sharing)")
 
 abnorms = ['Cardiomegaly', 
           'Emphysema', 
@@ -28,12 +38,34 @@ abnorms = ['Cardiomegaly',
           'Consolidation']
 
 st.sidebar.dataframe(abnorms)
-image_path = '00022803_000.png'
+st.sidebar.write("***")
+st.sidebar.subheader("About the model performance:")
+st.sidebar.write("*The deep learning model that is deployed is based on the **[DENSENET-121](https://www.kaggle.com/pytorch/densenet121)** which is modified later. The AU-ROC curve of the model is shown:*")
+st.sidebar.image('roc_cxr.png')
+st.sidebar.write("*Refer to the Colab notebook for more details*")
 
-st.text("Please upload your Chest X-Ray images in png format only")
+# image_path_1 = '00022803_000.png'
+# image_path_2 = ''
+# image_path_3 = ''
 
-st.write("**Upload your Image**")
-img = st.file_uploader("Click here and upload an X-Ray image.")
+
+st.markdown('***')
+
+# st.write('**Select an image for a DEMO**')
+# menu = ['Select an Image','Image 1', 'Image 2', 'Image 3']
+# choice = st.selectbox('Select an image', menu)
+
+# if choice == 'Image 1':
+#     img = image_path_1
+# elif choice == 'Image 2':
+#     img = image_path_2
+# elif choice == 'Image 3':
+#     img = image_path_3
+
+
+st.subheader("**Upload your Image:**")
+st.markdown("**Please upload your images in png format only**")
+img = st.file_uploader("")
 
 if img:
     st.markdown("Your image has been successfully uploaded!", unsafe_allow_html = True)
@@ -45,30 +77,38 @@ if img:
         time.sleep(10)
     
 
-    output = model_inference(cximg,'pretrained_model.h5')
-    output1 = list(output)
+    output, image_out = model_inference(cximg,'pretrained_model.h5')
+    output1 = output.ravel().tolist()
     maxvalue = max(output1)
     index = output1.index(maxvalue)
-
-    gradcambutton = st.sidebar.button("Compute CAMs")
+    perc = int(maxvalue * 100)
     
     df = pd.DataFrame(output,columns = abnorms)
-    st.success('Done!')
-    st.table(df.T)
+    
+    st.success("*Prediction:* **{}** *with an approx probability of* **{}%**".format(abnorms[index],perc))
+    st.markdown("***")
+    st.subheader("Computing prediction probabilites for all abnormalities")        
+    st.table(df.T.style.highlight_max(axis=0))
 
-    if gradcambutton:
-        st.write("")
-        
-        st.header("Computing prediction probabilites for all abnormalities")        
+    with st.spinner('Computing class activation mapping.......'):
+        time.sleep(15)
 
-        camimage = grad_cam(cximg,index)
+    
+    st.write("")
 
-        fig,ax = plt.subplots()
-        plt.axis('off')
-        plt.title("Viewing CNN Class Activation mappings")
-        plt.imshow(cximg,cmap='gray')
-        plt.imshow(camimage, cmap='jet')
+    camimage = grad_cam(cximg,index)
+    plt.title("Viewing CNN Class Activation mappings")
+    fig,ax = plt.subplots()
+    plt.axis('off')
+    ax.imshow(image_out,cmap='gray')
+    ax.imshow(camimage, cmap='jet',alpha=0.45)
 
-        st.pyplot(fig)
-        
+    st.pyplot(fig, use_column_width=True)
+
+    st.write("**The above representation is a Grad-CAM heatmap juxtaposed on the input image.**")
+    st.write("CAM or Class activation mapping, is an ML interpretability tool that shows the regions where the model is *looking at*. This is done by extracting the gradients of the class of output from the final convolutional layer of the neural network. For more details check out the [GradCAM paper](https://arxiv.org/abs/1610.02391)")   
+    
+    del img, output, image_out,camimage,output1,maxvalue,index,perc,df
+    gc.collect()
+
 

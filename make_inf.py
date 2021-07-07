@@ -30,7 +30,7 @@ def model_inference(xrimage, model_weights):
 
     pred = model.predict(image_raw)
 
-    return pred
+    return pred, image
 
 def grad_cam(image, cls, layer_name = "bn", H=320, W=320):
     base_model = DenseNet121(weights = 'densenet.hdf5', include_top = False)
