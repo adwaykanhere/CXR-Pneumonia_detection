@@ -101,7 +101,7 @@ if img:
     fig,ax = plt.subplots()
     plt.axis('off')
     ax.imshow(image_out,cmap='gray')
-    ax.imshow(camimage, cmap='jet',alpha=0.45)
+    ax.imshow(camimage, cmap='jet',alpha=min(0.45,maxvalue))
 
     st.pyplot(fig, use_column_width=True)
 
