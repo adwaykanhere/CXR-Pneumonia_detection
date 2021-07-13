@@ -1,13 +1,15 @@
 import numpy as np
 import cv2
+import streamlit as st
 from tensorflow.keras.applications.densenet import DenseNet121
 from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
-from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras import backend as K
 from PIL import Image, ImageOps
 
 
+@st.cache(allow_output_mutation=True)
 def model_inference(xrimage, model_weights):
 
     # Load the model 
@@ -32,6 +34,10 @@ def model_inference(xrimage, model_weights):
 
     return pred, image
 
+
+
+
+@st.cache(allow_output_mutation=True)
 def grad_cam(image, cls, layer_name = "bn", H=320, W=320):
     base_model = DenseNet121(weights = 'densenet.hdf5', include_top = False)
     x = base_model.output

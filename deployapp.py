@@ -9,6 +9,13 @@ import time
 import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
 
+st.set_option('deprecation.showfileUploaderEncoding', False)
+@st.cache(allow_output_mutation=True)
+def loading_model():
+  model = "pretrained_model.h5"
+  return model
+
+
 gc.enable()
 
 st.sidebar.title("Deep learning based medical image diagnosis")
