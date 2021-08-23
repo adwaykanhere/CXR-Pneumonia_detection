@@ -58,7 +58,7 @@ image_path_1 = '00022803_000.png'
 
 st.markdown('***')
 
-st.write('**Select an image for a DEMO**')
+st.write('**Select a Demo image**')
 menu = ['Select an Image','Image 1', 'Image 2', 'Image 3']
 choice = st.selectbox('Select an image', menu)
 
@@ -112,9 +112,9 @@ if img:
     ax.imshow(camimage, cmap='jet',alpha=min(0.45,maxvalue))
 
     st.pyplot(fig, use_column_width=True)
-
-    st.write("**The above representation is a Grad-CAM heatmap juxtaposed on the input image.**")
-    st.write("CAM or Class activation mapping, is an ML interpretability tool that shows the regions where the model is *looking at*. This is done by extracting the gradients from the prefinal convolutional layer of the predicted output class. For more details check out the [GradCAM paper](https://arxiv.org/abs/1610.02391)")   
+    with st.expander("See explanation"):
+        st.write("**The above representation is a Grad-CAM heatmap juxtaposed on the input image.**")
+        st.write("CAM or Class activation mapping, is an ML interpretability tool that shows the regions where the model is *looking at*. This is done by extracting the gradients from the prefinal convolutional layer of the predicted output class. For more details check out the [GradCAM paper](https://arxiv.org/abs/1610.02391)")   
     
     del img, output, image_out,camimage,output1,maxvalue,index,perc,df
     gc.collect()
