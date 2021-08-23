@@ -113,8 +113,8 @@ if img:
 
     st.pyplot(fig, use_column_width=True)
     with st.expander("See explanation"):
-        st.write("**The above representation is a Grad-CAM heatmap juxtaposed on the input image.**")
-        st.write("CAM or Class activation mapping, is an ML interpretability tool that shows the regions where the model is *looking at*. This is done by extracting the gradients from the prefinal convolutional layer of the predicted output class. For more details check out the [GradCAM paper](https://arxiv.org/abs/1610.02391)")   
+        st.write("**The above representation is a Grad-CAM heatmap juxtaposed on the input image.**
+        "CAM or Class activation mapping, is an ML interpretability tool that shows the regions where the model is *looking at*. This is done by extracting the gradients from the prefinal convolutional layer of the predicted output class. For more details check out the [GradCAM paper](https://arxiv.org/abs/1610.02391)")   
     
     del img, output, image_out,camimage,output1,maxvalue,index,perc,df
     gc.collect()
