@@ -20,7 +20,7 @@ gc.enable()
 
 st.sidebar.title("Deep learning based medical image diagnosis")
 
-st.title("Welcome to Chest X-Ray Abnormalities Classification using Machine learning")
+st.title("Welcome! This page is about Chest X-Ray Abnormalities Classification using Machine learning")
 st.sidebar.subheader("Classify between the following types of abnormalities:")
 
 st.write("This application can be used to predict the occurence of one or more medical abnormalities from radiographic chest X-ray images as listed for the conditions described on the left.")
