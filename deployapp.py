@@ -63,8 +63,8 @@ menu = ['Select an Image','Image 1']
 choice = st.selectbox('Select an image', menu)
 
 if choice == 'Image 1':
-    img = cv2.imread(image_path_1)
-    img = Image.open(img)
+    #img = cv2.imread(image_path_1)
+    img = Image.open(image_path_1)
 
 # elif choice == 'Image 2':  ## Work out correct paths
 #     img = image_path_2
