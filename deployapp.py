@@ -27,7 +27,7 @@ st.write("This application can be used to predict the occurence of one or more m
 
 st.write("The machine learning model being used here is based on a pretrained model developed on [this Chest X-Ray dataset](https://nihcc.app.box.com/v/ChestXray-NIHCC); the model is pretrained and is based from [here](https://www.coursera.org/learn/ai-for-medical-diagnosis?)")
 
-st.write("**For a step-by-step approach to training and testing this framework, check out this** [Google Colab notebook](https://colab.research.google.com/drive/1o1tYdm80PqJNyT3F9aiueqb0bc0SU9ek?usp=sharing)")
+st.write("**For a step-by-step approach to training and testing this framework, check out this** [Google Colab notebook](https://colab.research.google.com/drive/1njvyf1pFOLdgrQnhKOEuJXcI1kug-mK5?usp=sharing)")
 
 abnorms = ['Cardiomegaly', 
           'Emphysema', 
