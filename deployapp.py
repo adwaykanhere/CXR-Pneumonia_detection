@@ -51,7 +51,7 @@ st.sidebar.write("*The deep learning model that is deployed is based on the **[D
 st.sidebar.image('roc_cxr.png')
 st.sidebar.write("*Refer to the Colab notebook for more details*")
 
-image_path_1 = '/00022803_000.png'
+image_path_1 = '00022803_000.png'
 # image_path_2 = ''
 # image_path_3 = ''
 
@@ -59,7 +59,7 @@ image_path_1 = '/00022803_000.png'
 st.markdown('***')
 
 st.write('**Select a Demo image**')
-menu = ['Select an Image','Image 1', 'Image 2', 'Image 3']
+menu = ['Select an Image','Image 1']
 choice = st.selectbox('Select an image', menu)
 
 if choice == 'Image 1':
