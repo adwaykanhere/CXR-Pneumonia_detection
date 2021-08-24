@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from PIL import Image
 from make_inf import model_inference, grad_cam
-import os
+import cv2
 import gc
 import time
 import tensorflow as tf
@@ -51,7 +51,7 @@ st.sidebar.write("*The deep learning model that is deployed is based on the **[D
 st.sidebar.image('roc_cxr.png')
 st.sidebar.write("*Refer to the Colab notebook for more details*")
 
-image_path_1 = '00022803_000.png'
+image_path_1 = './00022803_000.png'
 # image_path_2 = ''
 # image_path_3 = ''
 
@@ -63,7 +63,7 @@ menu = ['Select an Image','Image 1']
 choice = st.selectbox('Select an image', menu)
 
 if choice == 'Image 1':
-    img = Image.open(image_path_1)
+    img = cv2.imread(image_path_1)
 
 # elif choice == 'Image 2':  ## Work out correct paths
 #     img = image_path_2
