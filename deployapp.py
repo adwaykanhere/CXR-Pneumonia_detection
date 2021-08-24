@@ -64,7 +64,7 @@ choice = st.selectbox('Select an image', menu)
 
 if choice == 'Image 1':
     #img = cv2.imread(image_path_1)
-    img = image_path_1
+    img_demo = image_path_1
 
 # elif choice == 'Image 2':  ## Work out correct paths
 #     img = image_path_2
@@ -72,13 +72,17 @@ if choice == 'Image 1':
 #     img = image_path_3
 
 
-st.subheader("**Upload your Image:**")
-st.markdown("**Please upload your images in png format only**")
-img = st.file_uploader("")
 
-if img:
+
+def run():
+    st.subheader("**Upload your Image:**")
+    st.markdown("**Please upload your images in png format only**")
+    img = st.file_uploader("")
     st.markdown("Your image has been successfully uploaded!", unsafe_allow_html = True)
-    cximg = Image.open(img)
+    if img_demo:
+        cximg = Image.open(img_demo)
+    elif img:
+        cximg = Image.open(img)
     st.image(cximg, caption = "Uploaded Chest X-ray", use_column_width = True)
     st.write("")    
 
