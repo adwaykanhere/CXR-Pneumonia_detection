@@ -71,18 +71,14 @@ if choice == 'Image 1':
 # elif choice == 'Image 3':
 #     img = image_path_3
 
+st.subheader("**Upload your Image:**")
+st.markdown("**Please upload your images in png format only**")
+img = st.file_uploader("")
 
 
-
-def run():
-    st.subheader("**Upload your Image:**")
-    st.markdown("**Please upload your images in png format only**")
-    img = st.file_uploader("")
+if img:
     st.markdown("Your image has been successfully uploaded!", unsafe_allow_html = True)
-    if img_demo:
-        cximg = Image.open(img_demo)
-    elif img:
-        cximg = Image.open(img)
+    cximg = Image.open(img)
     st.image(cximg, caption = "Uploaded Chest X-ray", use_column_width = True)
     st.write("")    
 
