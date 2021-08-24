@@ -58,19 +58,6 @@ image_path_1 = './00022803_000.png'
 
 st.markdown('***')
 
-st.write('**Select a Demo image**')
-menu = ['Select an Image','Image 1']
-choice = st.selectbox('Select an image', menu)
-
-if choice == 'Image 1':
-    #img = cv2.imread(image_path_1)
-    img_demo = image_path_1
-
-# elif choice == 'Image 2':  ## Work out correct paths
-#     img = image_path_2
-# elif choice == 'Image 3':
-#     img = image_path_3
-
 st.subheader("**Upload your Image:**")
 st.markdown("**Please upload your images in png format only**")
 img = st.file_uploader("")
