@@ -51,7 +51,7 @@ st.sidebar.write("*The deep learning model that is deployed is based on the **[D
 st.sidebar.image('roc_cxr.png')
 st.sidebar.write("*Refer to the Colab notebook for more details*")
 
-image_path_1 = '00022803_000.png'
+image_path_1 = './00022803_000.png'
 # image_path_2 = ''
 # image_path_3 = ''
 
